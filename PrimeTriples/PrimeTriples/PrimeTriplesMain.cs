@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PrimeTriples
 {
-    class Program
+    class PrimeTriplesMain
     {
         static void Main(string[] args)
         {
