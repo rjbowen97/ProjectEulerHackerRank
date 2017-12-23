@@ -10,36 +10,20 @@ namespace PrimeTriples
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello world!");
-        }
+            Console.WriteLine(CalculatePrefixSum(10000000));
 
-        static HashSet<double> getPrimeBooleans(int n)
+        }
+        
+        static Int64 CalculatePrefixSum(Int64 n)
         {
-            HashSet<int> NoPrime = new HashSet<int>();
+            Int64 prefixSum = 0;
 
-            long count = 0;
-
-            for (int x = 2; x < n; x++)
+            for (Int64 i = 0; i <= n; i++)
             {
-                for (int y = x * 2; y < n; y = y + x)
-                {
-                    if (!NoPrime.Contains(y))
-                    {
-                        NoPrime.Add(y);
-                    }
-                }
-
-                for (int z = 2; z < n; z++)
-                {
-                    if (!NoPrime.Contains(z))
-                    {
-                        Console.WriteLine(z);
-                        count = count + z;
-                    }
-                }
-                Console.WriteLine("Sum is: " + count);
+                prefixSum += i;
             }
-
+            return prefixSum;
         }
+
     }
 }
