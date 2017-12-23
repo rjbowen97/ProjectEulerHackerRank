@@ -10,20 +10,21 @@ namespace PrimeTriples
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(CalculatePrefixSum(10000000));
+            long rowStartNumber = CalculatePrefixSum(10000000) + 1;
+            long rowEndNummber = CalculatePrefixSum(10000001);
 
+            Console.WriteLine(Math.Log(rowEndNummber, 2));
         }
-        
-        static Int64 CalculatePrefixSum(Int64 n)
-        {
-            Int64 prefixSum = 0;
 
-            for (Int64 i = 0; i <= n; i++)
+        static long CalculatePrefixSum(long n)
+        {
+            long prefixSum = 0;
+
+            for (long i = 0; i <= n; i++)
             {
                 prefixSum += i;
             }
             return prefixSum;
         }
-
     }
 }
