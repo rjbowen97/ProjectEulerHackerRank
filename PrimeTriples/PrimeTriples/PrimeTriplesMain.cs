@@ -10,8 +10,18 @@ namespace PrimeTriples
     {
         static void Main(string[] args)
         {
-            ulong rowStartNumber = CalculatePrefixSum(10000000) + 1;
-            ulong rowEndNummber = CalculatePrefixSum(10000001);
+            ulong rowStartNumber = GetRowStartNumber(10000000);
+            ulong rowEndNummber = GetRowEndNumber(10000001);
+        }
+
+        static ulong GetRowStartNumber(ulong n)
+        {
+            return CalculatePrefixSum(n) + 1;
+        }
+
+        static ulong GetRowEndNumber(ulong n)
+        {
+            return CalculatePrefixSum(n + 1);
         }
 
         static ulong CalculatePrefixSum(ulong n)
