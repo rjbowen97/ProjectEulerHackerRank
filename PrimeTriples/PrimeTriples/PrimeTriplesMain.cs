@@ -10,21 +10,38 @@ namespace PrimeTriples
     {
         static void Main(string[] args)
         {
-            ulong rowStartNumber = GetRowStartNumber(10000000);
-            ulong rowEndNummber = GetRowEndNumber(10000001);
+            TriangleRow triangleRow = new TriangleRow(10000000);
+            Console.WriteLine(triangleRow.ToString());
+        }
+    }
+
+    class TriangleRow
+    {
+        ulong startNumber;
+        ulong endNumber;
+
+        public TriangleRow(ulong n)
+        {
+            startNumber = GetRowStartNumber(n);
+            endNumber = GetRowEndNumber(n);
         }
 
-        static ulong GetRowStartNumber(ulong n)
+        public override string ToString()
+        {
+            return "startNumber: " + startNumber + "\nendNumber " + endNumber;
+        }
+
+        private ulong GetRowStartNumber(ulong n)
         {
             return CalculatePrefixSum(n) + 1;
         }
 
-        static ulong GetRowEndNumber(ulong n)
+        private ulong GetRowEndNumber(ulong n)
         {
             return CalculatePrefixSum(n + 1);
         }
 
-        static ulong CalculatePrefixSum(ulong n)
+        private ulong CalculatePrefixSum(ulong n)
         {
             ulong prefixSum = 0;
 
@@ -35,4 +52,5 @@ namespace PrimeTriples
             return prefixSum;
         }
     }
+
 }
