@@ -20,15 +20,15 @@ namespace PrimeTriples
         ulong startNumber;
         ulong endNumber;
 
+        public override string ToString()
+        {
+            return "startNumber: " + startNumber + "\nendNumber " + endNumber;
+        }
+
         public TriangleRow(ulong n)
         {
             startNumber = GetRowStartNumber(n);
             endNumber = GetRowEndNumber(n);
-        }
-
-        public override string ToString()
-        {
-            return "startNumber: " + startNumber + "\nendNumber " + endNumber;
         }
 
         private ulong GetRowStartNumber(ulong n)
