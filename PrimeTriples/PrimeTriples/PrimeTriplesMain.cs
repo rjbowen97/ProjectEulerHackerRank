@@ -10,15 +10,18 @@ namespace PrimeTriples
     {
         static void Main(string[] args)
         {
-            TriangleRow triangleRow = new TriangleRow(10000000);
+            TriangleRow triangleRow = new TriangleRow(100);
             Console.WriteLine(triangleRow.ToString());
+
+            Console.WriteLine(PrimeCalculator.IsStrongProbablePrime(2047));
+
         }
     }
 
     static class PrimeCalculator
     {
         //Uses a strong probable prime test with base two
-        static bool IsStrongProbablePrime(int n)
+        public static bool IsStrongProbablePrime(int n)
         {
             int s = 0;
             int d = n;
@@ -42,9 +45,12 @@ namespace PrimeTriples
 
             for (int r = 0; r < s; r++) //O(s - 1) == O(log(n))
             {
-
+                if ((Math.Pow(2, d*Math.Pow(2,r)) + 1) % n == 0)
+                {
+                    return true;
+                }
             }
-
+            return false;
         }
     }
 
