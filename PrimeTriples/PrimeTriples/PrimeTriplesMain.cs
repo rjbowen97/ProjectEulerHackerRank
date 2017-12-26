@@ -14,7 +14,6 @@ namespace PrimeTriples
             Console.WriteLine(triangleRow.ToString());
 
             Console.WriteLine(PrimeCalculator.IsStrongProbablePrime(2047));
-
         }
     }
 
@@ -30,7 +29,7 @@ namespace PrimeTriples
             {
                 for (int testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
                 {
-                    if (Math.Pow(2,testS) * testD == n-1) //n = d*2^s + 1
+                    if (n - 1 == Math.Pow(2,testS) * testD) //n = d*2^s + 1
                     {
                         s = testS;
                         d = testD;
@@ -38,19 +37,24 @@ namespace PrimeTriples
                 }
             }
 
-            if ((Math.Pow(2, d) - 1) % n == 0) //O(1)
+            if ((Modulo(Math.Pow(2, d) - 1, n) == 0)) //O(1)
             {
                 return true;
             }
 
             for (int r = 0; r < s; r++) //O(s - 1) == O(log(n))
             {
-                if ((Math.Pow(2, d*Math.Pow(2,r)) + 1) % n == 0)
+                if (Modulo((Math.Pow(2, d*Math.Pow(2,r)) + 1), n) == 0)
                 {
                     return true;
                 }
             }
             return false;
+        }
+
+        static double Modulo(double a, double b)
+        {
+            return a - b * Math.Floor(a / b);
         }
     }
 
