@@ -13,21 +13,21 @@ namespace PrimeTriples
             TriangleRow triangleRow = new TriangleRow(100);
             Console.WriteLine(triangleRow.ToString());
 
-            Console.WriteLine(PrimeCalculator.IsStrongProbablePrime(2047));
+            Console.WriteLine(PrimeCalculator.IsBaseTwoStrongProbablePrime(2047));
         }
     }
 
     static class PrimeCalculator
     {
         //Uses a strong probable prime test with base two
-        public static bool IsStrongProbablePrime(int n)
+        public static bool IsBaseTwoStrongProbablePrime(double n)
         {
-            int s = 0;
-            int d = n;
+            double s = 0;
+            double d = n;
 
-            for (int testS = 0; testS < Math.Log(n, 2); testS++) //O(log(n))
+            for (double testS = 0; testS < Math.Log(n, 2); testS++) //O(log(n))
             {
-                for (int testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
+                for (double testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
                 {
                     if (n - 1 == Math.Pow(2,testS) * testD) //n = d*2^s + 1
                     {
@@ -42,7 +42,7 @@ namespace PrimeTriples
                 return true;
             }
 
-            for (int r = 0; r < s; r++) //O(s - 1) == O(log(n))
+            for (double r = 0; r < s; r++) //O(s - 1) == O(log(n))
             {
                 if (Modulo((Math.Pow(2, d*Math.Pow(2,r)) + 1), n) == 0)
                 {
@@ -55,6 +55,29 @@ namespace PrimeTriples
         static double Modulo(double a, double b)
         {
             return a - b * Math.Floor(a / b);
+        }
+
+        static bool IsStrongLucasProbablePrime(double n)
+        {
+            double D = 5;
+            while (CalculateJacobiSymbol(D, n) != -1)
+            {
+
+                if (D > 0)
+                {
+                    D = -1 * (D + 2);
+                }
+
+                else
+                {
+                    D = -1 * (D - 2);
+                }
+            }
+        }
+
+        static double CalculateJacobiSymbol(double D, double n)
+        {
+            
         }
     }
 
