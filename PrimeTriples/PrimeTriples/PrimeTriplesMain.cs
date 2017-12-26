@@ -15,6 +15,11 @@ namespace PrimeTriples
         }
     }
 
+    static class PrimeCalculator
+    {
+
+    }
+
     class TriangleRow
     {
         ulong startNumber;
