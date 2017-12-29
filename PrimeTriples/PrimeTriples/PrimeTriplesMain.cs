@@ -9,12 +9,30 @@ namespace PrimeTriples
             TriangleRow triangleRow = new TriangleRow(100);
             Console.WriteLine(triangleRow.ToString());
 
-            Console.WriteLine(PrimeCalculator.IsBaseTwoStrongProbablePrime(2047));
+
         }
     }
 
     static class PrimeCalculator
     {
+
+        static double Modulo(double a, double b)
+        {
+            return a - b * Math.Floor(a / b);
+        }
+
+        public static bool RunBailliePSWPrimalityTest(double n)
+        {
+
+            if (!IsBaseTwoStrongProbablePrime(n))
+            {
+                return false;
+            }
+
+            double D = GenerateLucasParameter(n);
+
+        }
+
         //Uses a strong probable prime test with base two
         public static bool IsBaseTwoStrongProbablePrime(double n)
         {
@@ -46,16 +64,6 @@ namespace PrimeTriples
                 }
             }
             return false;
-        }
-
-        static double Modulo(double a, double b)
-        {
-            return a - b * Math.Floor(a / b);
-        }
-
-        static bool IsStrongLucasProbablePrime(double n)
-        {
-            
         }
 
         static double GenerateLucasParameter(double n)
@@ -109,7 +117,7 @@ namespace PrimeTriples
                 b = temp;
 
                 if ((Modulo(a, 4)) == 3 && (Modulo(b, 4)) == 3) j = -j;
-                a = Modulo(a,b);
+                a = Modulo(a, b);
             }
             if (b == 1)
             {
