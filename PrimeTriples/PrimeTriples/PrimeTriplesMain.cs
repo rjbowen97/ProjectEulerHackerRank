@@ -24,12 +24,21 @@ namespace PrimeTriples
         public static bool RunBailliePSWPrimalityTest(double n)
         {
 
+            //Check here if n is a perfect square
+
             if (!IsBaseTwoStrongProbablePrime(n))
             {
                 return false;
             }
 
-            double D = GenerateLucasParameter(n);
+            double D = GenerateStrongLucasProbablePrimeParameter(n);
+
+            IsStrongLucasProbablePrime(D, 1, ((1 - D) / 4));
+
+        }
+
+        public static bool IsStrongLucasProbablePrime(double D, double P, double Q)
+        {
 
         }
 
@@ -66,7 +75,7 @@ namespace PrimeTriples
             return false;
         }
 
-        static double GenerateLucasParameter(double n)
+        static double GenerateStrongLucasProbablePrimeParameter(double n)
         {
             double D = 5;
             while (CalculateJacobiSymbol(D, n) != -1)
