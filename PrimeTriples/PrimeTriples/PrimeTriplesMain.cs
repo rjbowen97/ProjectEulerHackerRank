@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 namespace PrimeTriples
 {
@@ -26,15 +27,38 @@ namespace PrimeTriples
 
             //Check here if n is a perfect square
 
+            //Run trial division on n using primes 2 through 1000
+
             if (!IsBaseTwoStrongProbablePrime(n))
             {
                 return false;
             }
 
             double D = GenerateStrongLucasProbablePrimeParameter(n);
+            GenerateLucasSequencesUandV(D);
 
             IsStrongLucasProbablePrime(D, 1, ((1 - D) / 4));
 
+        }
+
+        //Item1 = U; Item2 = V
+        public static Tuple<ArrayList, ArrayList> GenerateLucasSequencesUandV(double D) //this can probably be optimized more
+        {
+            ArrayList U = new ArrayList();
+            ArrayList V = new ArrayList();
+
+            
+
+        }
+
+        public static double a(double n, double P, double D)
+        {
+            return (0.5 * (P + Math.Sqrt(D)));
+        }
+
+        public static double b(double n, double P, double D)
+        {
+            return (0.5 * (P - Math.Sqrt(D)));
         }
 
         public static bool IsStrongLucasProbablePrime(double D, double P, double Q)
