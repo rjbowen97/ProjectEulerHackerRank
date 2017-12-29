@@ -55,10 +55,14 @@ namespace PrimeTriples
 
         static bool IsStrongLucasProbablePrime(double n)
         {
+            
+        }
+
+        static double GenerateLucasParameter(double n)
+        {
             double D = 5;
             while (CalculateJacobiSymbol(D, n) != -1)
             {
-
                 if (D > 0)
                 {
                     D = -1 * (D + 2);
@@ -69,6 +73,8 @@ namespace PrimeTriples
                     D = -1 * (D - 2);
                 }
             }
+
+            return D;
         }
 
         static double CalculateJacobiSymbol(double a, double b)
