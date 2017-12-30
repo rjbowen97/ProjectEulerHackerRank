@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace PrimeTriples
 {
@@ -10,14 +11,12 @@ namespace PrimeTriples
             TriangleRow triangleRow = new TriangleRow(100);
             Console.WriteLine(triangleRow.ToString());
 
-
         }
     }
 
-    static class PrimeCalculator
+    public static class PrimeCalculator
     {
-
-        static double Modulo(double a, double b)
+        public static double Modulo(double a, double b)
         {
             return a - b * Math.Floor(a / b);
         }
@@ -35,20 +34,20 @@ namespace PrimeTriples
             }
 
             double D = GenerateStrongLucasProbablePrimeParameter(n);
-            GenerateLucasSequencesUandV(D);
-
-            IsStrongLucasProbablePrime(D, 1, ((1 - D) / 4));
+            IsStrongLucasProbablePrime();
 
         }
 
-        //Item1 = U; Item2 = V
-        public static Tuple<ArrayList, ArrayList> GenerateLucasSequencesUandV(double D) //this can probably be optimized more
+        public static bool IsStrongLucasProbablePrime(double D)
         {
-            ArrayList U = new ArrayList();
-            ArrayList V = new ArrayList();
+            GenerateLucasSequencesUandV(D);
+        }
 
-            
-
+        //Item1 = U; Item2 = V
+        public static Tuple<Dictionary<double, double>, Dictionary<double, double>> GenerateLucasSequencesUandV(double D) //this can probably be optimized more
+        {
+            Dictionary<double, double> U = new Dictionary<double, double>();
+            Dictionary<double, double> V = new Dictionary<double, double>();
         }
 
         public static double a(double n, double P, double D)
@@ -59,11 +58,6 @@ namespace PrimeTriples
         public static double b(double n, double P, double D)
         {
             return (0.5 * (P - Math.Sqrt(D)));
-        }
-
-        public static bool IsStrongLucasProbablePrime(double D, double P, double Q)
-        {
-
         }
 
         //Uses a strong probable prime test with base two
@@ -99,7 +93,7 @@ namespace PrimeTriples
             return false;
         }
 
-        static double GenerateStrongLucasProbablePrimeParameter(double n)
+        public static double GenerateStrongLucasProbablePrimeParameter(double n)
         {
             double D = 5;
             while (CalculateJacobiSymbol(D, n) != -1)
@@ -118,7 +112,7 @@ namespace PrimeTriples
             return D;
         }
 
-        static double CalculateJacobiSymbol(double a, double b)
+        public static double CalculateJacobiSymbol(double a, double b)
         {
             if (b <= 0 || (Modulo(b, 2)) == 0)
             {
@@ -180,17 +174,17 @@ class TriangleRow
         endNumber = GetRowEndNumber(n);
     }
 
-    private ulong GetRowStartNumber(ulong n) //O(n)
+    public ulong GetRowStartNumber(ulong n) //O(n)
     {
         return CalculatePrefixSum(n) + 1;
     }
 
-    private ulong GetRowEndNumber(ulong n) //O(n)
+    public ulong GetRowEndNumber(ulong n) //O(n)
     {
         return CalculatePrefixSum(n + 1);
     }
 
-    private ulong CalculatePrefixSum(ulong n) //O(n)
+    public ulong CalculatePrefixSum(ulong n) //O(n)
     {
         ulong prefixSum = 0;
 
