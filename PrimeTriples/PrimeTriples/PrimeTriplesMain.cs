@@ -34,13 +34,17 @@ namespace PrimeTriples
             }
 
             double D = GenerateStrongLucasProbablePrimeParameter(n);
-            IsStrongLucasProbablePrime();
+            IsStrongLucasProbablePrime(D);
 
+
+            return true;
         }
 
         public static bool IsStrongLucasProbablePrime(double D)
         {
             GenerateLucasSequencesUandV(D);
+
+            return false;
         }
 
         //Item1 = U; Item2 = V
@@ -48,6 +52,8 @@ namespace PrimeTriples
         {
             Dictionary<double, double> U = new Dictionary<double, double>();
             Dictionary<double, double> V = new Dictionary<double, double>();
+
+            return null;
         }
 
         public static double a(double n, double P, double D)
