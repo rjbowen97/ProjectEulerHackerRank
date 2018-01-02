@@ -20,15 +20,15 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void IsBaseTwoStrongProbablePrimeTesting()
         {
-            //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(5));
-            //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(19));
+            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(5));
+            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(19));
             Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(197));
-            //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(2047)); //Strong psuedoprime in base 2, actually composite
+            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(2047)); //Strong psuedoprime in base 2, actually composite
 
-            //Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(10));
-            //Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(1000));
-            //Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(54));
-            //Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(98));
+            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(10));
+            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(1000));
+            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(54));
+            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(98));
 
 
 

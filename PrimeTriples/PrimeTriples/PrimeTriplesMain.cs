@@ -83,7 +83,7 @@ namespace PrimeTriples
                 }
             }
 
-            if ((Modulo(Math.Pow(2, d) - 1, n) == 0)) //O(1)
+            if ((Modulo(Math.Pow(2, d) - 1, n) == 0)) //O(1) //Look into using bitwise AND for this moduloing of 2
             {
                 return true;
             }
