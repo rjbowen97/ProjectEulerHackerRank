@@ -10,7 +10,6 @@ namespace PrimeTriples
         {
             TriangleRow triangleRow = new TriangleRow(100);
             Console.WriteLine(triangleRow.ToString());
-
         }
     }
 
