@@ -15,12 +15,26 @@ namespace PrimeTriples
 
     public static class PrimeCalculator
     {
-        public static double Modulo(double a, double b)
+        public static long Modulo(long a, long b)
         {
-            return a - b * Math.Floor(a / b);
+            return a - b * (a / b);
         }
 
-        public static bool RunBailliePSWPrimalityTest(double n)
+        public static long PowerModulo(long a, long b, long c)
+        {
+            string bBinaryString = Convert.ToString(b, 2);
+            char[] bCharArray = bBinaryString.ToCharArray();
+
+
+            foreach (char bit in bInBinary)
+            {
+
+            }
+
+            return 2;
+        }
+
+        public static bool RunBailliePSWPrimalityTest(long n)
         {
 
             //Check here if n is a perfect square
@@ -32,14 +46,14 @@ namespace PrimeTriples
                 return false;
             }
 
-            double D = GenerateStrongLucasProbablePrimeParameter(n);
+            long D = GenerateStrongLucasProbablePrimeParameter(n);
             IsStrongLucasProbablePrime(D);
 
 
             return true;
         }
 
-        public static bool IsStrongLucasProbablePrime(double D)
+        public static bool IsStrongLucasProbablePrime(long D)
         {
             GenerateLucasSequencesUandV(D);
 
@@ -47,33 +61,33 @@ namespace PrimeTriples
         }
 
         //Item1 = U; Item2 = V
-        public static Tuple<Dictionary<double, double>, Dictionary<double, double>> GenerateLucasSequencesUandV(double D) //this can probably be optimized more
+        public static Tuple<Dictionary<long, long>, Dictionary<long, long>> GenerateLucasSequencesUandV(long D) //this can probably be optimized more
         {
-            Dictionary<double, double> U = new Dictionary<double, double>();
-            Dictionary<double, double> V = new Dictionary<double, double>();
+            Dictionary<long, long> U = new Dictionary<long, long>();
+            Dictionary<long, long> V = new Dictionary<long, long>();
 
             return null;
         }
 
-        public static double a(double n, double P, double D)
+        public static long a(long n, long P, long D)
         {
-            return (0.5 * (P + Math.Sqrt(D)));
+            return (long) (0.5 * (P + Math.Sqrt(D)));
         }
 
-        public static double b(double n, double P, double D)
+        public static long b(long n, long P, long D)
         {
-            return (0.5 * (P - Math.Sqrt(D)));
+            return (long) (0.5 * (P - Math.Sqrt(D)));
         }
 
         //Uses a strong probable prime test with base two
-        public static bool IsBaseTwoStrongProbablePrime(double n)
+        public static bool IsBaseTwoStrongProbablePrime(long n)
         {
-            double s = 0;
-            double d = n;
+            long s = 0;
+            long d = n;
 
-            for (double testS = 0; testS < Math.Log(n, 2); testS++) //O(log(n))
+            for (long testS = 0; testS < Math.Log(n, 2); testS++) //O(log(n))
             {
-                for (double testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
+                for (long testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
                 {
                     if (n - 1 == Math.Pow(2, testS) * testD) //n = d*2^s + 1
                     {
@@ -83,14 +97,14 @@ namespace PrimeTriples
                 }
             }
 
-            if ((Modulo(Math.Pow(2, d) - 1, n) == 0)) //O(1) //Look into using bitwise AND for this moduloing of 2
+            if (Modulo((long) Math.Pow(2, d), n) == Modulo(1, n)) //O(1) //Look into using bitwise AND for this moduloing of 2
             {
                 return true;
             }
 
-            for (double r = 0; r < s; r++) //O(s - 1) == O(log(n))
+            for (long r = 0; r < s; r++) //O(s - 1) == O(log(n))
             {
-                if (Modulo((Math.Pow(2, d * Math.Pow(2, r)) + 1), n) == 0)
+                if (Modulo((long) Math.Pow(2, d * Math.Pow(2, r)), n) == Modulo(-1, n))
                 {
                     return true;
                 }
@@ -98,9 +112,9 @@ namespace PrimeTriples
             return false;
         }
 
-        public static double GenerateStrongLucasProbablePrimeParameter(double n)
+        public static long GenerateStrongLucasProbablePrimeParameter(long n)
         {
-            double D = 5;
+            long D = 5;
             while (CalculateJacobiSymbol(D, n) != -1)
             {
                 if (D > 0)
@@ -117,13 +131,13 @@ namespace PrimeTriples
             return D;
         }
 
-        public static double CalculateJacobiSymbol(double a, double b)
+        public static long CalculateJacobiSymbol(long a, long b)
         {
             if (b <= 0 || (Modulo(b, 2)) == 0)
             {
                 return 0;
             }
-            double j = 1;
+            long j = 1;
             if (a < 0)
             {
                 a = -a;
@@ -144,7 +158,7 @@ namespace PrimeTriples
                     }
                 }
 
-                double temp = a;
+                long temp = a;
                 a = b;
                 b = temp;
 
