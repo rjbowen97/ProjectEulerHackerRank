@@ -34,7 +34,9 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void PowerModuloTesting()
         {
-            PrimeCalculator.PowerModulo(500,117,19);
+            Assert.AreEqual(60, PrimeCalculator.PowerModulo(500, 400, 134));
+            Assert.AreEqual(109, PrimeCalculator.PowerModulo(29, 2, 122));
+            Assert.AreEqual(1, PrimeCalculator. PowerModulo(57, 80, 8));
         }
     }
 }

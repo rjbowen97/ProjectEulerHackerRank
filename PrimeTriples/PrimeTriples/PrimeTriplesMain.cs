@@ -25,7 +25,7 @@ namespace PrimeTriples
             string bBinaryString = Convert.ToString(b, 2);
             char[] bitArray = bBinaryString.ToCharArray();
 
-            long[] powerMods = new long[7];
+            long[] powerMods = new long[bitArray.Length];
 
             powerMods[0] = Modulo(a, c);
             
@@ -34,10 +34,10 @@ namespace PrimeTriples
                 powerMods[currentPowerModsIndex] = Modulo(powerMods[currentPowerModsIndex - 1] * powerMods[currentPowerModsIndex - 1], c);
             }
 
-            Array.Reverse(powerMods); //O(1) (is normally O(n), but we know the length of the list is 7
+            Array.Reverse(powerMods); //O(n)
 
             long totalMultipliedMod = 1;
-            for (int bitIndex = 0; bitIndex < bitArray.Length; bitIndex++) //O(1) (is normally O(n), but we know the length of the list is 7
+            for (int bitIndex = 0; bitIndex < bitArray.Length; bitIndex++) //O(n)
             {
                 if (bitArray[bitIndex] == '1')
                 {
