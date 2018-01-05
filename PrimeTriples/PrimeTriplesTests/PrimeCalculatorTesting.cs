@@ -22,7 +22,7 @@ namespace PrimeTriplesTests
         {
             //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(5));
             //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(19));
-            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(197));
+            //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(197));
             //Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(2047)); //Strong psuedoprime in base 2, actually composite
 
             //Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(10));
@@ -34,7 +34,7 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void PowerModuloTesting()
         {
-            PrimeCalculator.PowerModulo(1,4685,7);
+            PrimeCalculator.PowerModulo(500,117,19);
         }
     }
 }

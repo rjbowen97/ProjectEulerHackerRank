@@ -23,15 +23,31 @@ namespace PrimeTriples
         public static long PowerModulo(long a, long b, long c)
         {
             string bBinaryString = Convert.ToString(b, 2);
-            char[] bCharArray = bBinaryString.ToCharArray();
+            char[] bitArray = bBinaryString.ToCharArray();
 
+            long[] powerMods = new long[7];
 
-            foreach (char bit in bInBinary)
+            powerMods[0] = Modulo(a, c);
+            
+            for (int currentPowerModsIndex = 1; currentPowerModsIndex < powerMods.Length; currentPowerModsIndex++)
             {
-
+                powerMods[currentPowerModsIndex] = Modulo(powerMods[currentPowerModsIndex - 1] * powerMods[currentPowerModsIndex - 1], c);
             }
 
-            return 2;
+            Array.Reverse(powerMods); //O(1) (is normally O(n), but we know the length of the list is 7
+
+            long totalMultipliedMod = 1;
+            for (int bitIndex = 0; bitIndex < bitArray.Length; bitIndex++) //O(1) (is normally O(n), but we know the length of the list is 7
+            {
+                if (bitArray[bitIndex] == '1')
+                {
+                    totalMultipliedMod *= powerMods[bitIndex];
+                }
+            }
+
+            long result = Modulo(totalMultipliedMod, c);
+
+            return result;
         }
 
         public static bool RunBailliePSWPrimalityTest(long n)
