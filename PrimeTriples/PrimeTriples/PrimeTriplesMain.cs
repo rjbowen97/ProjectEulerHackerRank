@@ -113,14 +113,15 @@ namespace PrimeTriples
                 }
             }
 
-            if (Modulo((long) Math.Pow(2, d), n) == Modulo(1, n)) //O(1) //Look into using bitwise AND for this moduloing of 2
+            if (PowerModulo(2, d, n) == PowerModulo(1, 1, n)) //O(1) //Look into using bitwise AND for this moduloing of 2
             {
                 return true;
             }
 
             for (long r = 0; r < s; r++) //O(s - 1) == O(log(n))
             {
-                if (Modulo((long) Math.Pow(2, d * Math.Pow(2, r)), n) == Modulo(-1, n))
+                long power =  d * (long) Math.Pow(2, r);
+                if (PowerModulo(2, power, n) == PowerModulo(-1, 1, n))
                 {
                     return true;
                 }
