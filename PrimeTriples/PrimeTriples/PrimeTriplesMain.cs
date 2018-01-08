@@ -17,7 +17,7 @@ namespace PrimeTriples
     {
         public static long Modulo(long a, long b)
         {
-            return a - b * (a / b);
+            return a - b * ((long) Math.Floor((Convert.ToDouble(a) / Convert.ToDouble(b))));
         }
 
         public static long PowerModulo(long a, long b, long c)
