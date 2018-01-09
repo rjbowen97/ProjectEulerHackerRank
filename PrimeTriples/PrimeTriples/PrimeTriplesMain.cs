@@ -86,7 +86,7 @@ namespace PrimeTriples
                 }
             }
 
-            if (PowerModulo(2, d, n) == PowerModulo(1, 1, n)) //O(1) //Look into using bitwise AND for this moduloing of 2
+            if (PowerModulo(2, d, n) == PowerModulo(1, 1, n)) //O(log n)
             {
                 return true;
             }
