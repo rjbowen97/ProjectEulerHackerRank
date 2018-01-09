@@ -38,5 +38,15 @@ namespace PrimeTriplesTests
             Assert.AreEqual(109, PrimeCalculator.PowerModulo(29, 2, 122));
             Assert.AreEqual(1, PrimeCalculator. PowerModulo(57, 80, 8));
         }
+
+        [TestMethod]
+        public void JacobiSymbolTesting()
+        {
+            Assert.AreEqual(-1, PrimeCalculator.CalculateJacobiSymbol(3, 5));
+            Assert.AreEqual(-1, PrimeCalculator.CalculateJacobiSymbol(3, 17));
+            Assert.AreEqual(0, PrimeCalculator.CalculateJacobiSymbol(0, 9));
+            Assert.AreEqual(1, PrimeCalculator.CalculateJacobiSymbol(0, 1));
+            Assert.AreEqual(1, PrimeCalculator.CalculateJacobiSymbol(15, 17));
+        }
     }
 }

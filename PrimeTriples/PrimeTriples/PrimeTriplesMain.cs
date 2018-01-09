@@ -68,32 +68,6 @@ namespace PrimeTriples
             return true;
         }
 
-        public static bool IsStrongLucasProbablePrime(long D)
-        {
-            GenerateLucasSequencesUandV(D);
-
-            return false;
-        }
-
-        //Item1 = U; Item2 = V
-        public static Tuple<Dictionary<long, long>, Dictionary<long, long>> GenerateLucasSequencesUandV(long D) //this can probably be optimized more
-        {
-            Dictionary<long, long> U = new Dictionary<long, long>();
-            Dictionary<long, long> V = new Dictionary<long, long>();
-
-            return null;
-        }
-
-        public static long a(long n, long P, long D)
-        {
-            return (long) (0.5 * (P + Math.Sqrt(D)));
-        }
-
-        public static long b(long n, long P, long D)
-        {
-            return (long) (0.5 * (P - Math.Sqrt(D)));
-        }
-
         //Uses a strong probable prime test with base two
         public static bool IsBaseTwoStrongProbablePrime(long n)
         {
@@ -119,13 +93,39 @@ namespace PrimeTriples
 
             for (long r = 0; r < s; r++) //O(s - 1) == O(log(n))
             {
-                long power =  d * (long) Math.Pow(2, r);
+                long power = d * (long)Math.Pow(2, r);
                 if (PowerModulo(2, power, n) == PowerModulo(-1, 1, n))
                 {
                     return true;
                 }
             }
             return false;
+        }
+
+        public static bool IsStrongLucasProbablePrime(long D)
+        {
+            GenerateLucasSequencesUandV(D);
+
+            return false;
+        }
+
+        //Item1 = U; Item2 = V
+        public static Tuple<Dictionary<long, long>, Dictionary<long, long>> GenerateLucasSequencesUandV(long D) //this can probably be optimized more
+        {
+            Dictionary<long, long> U = new Dictionary<long, long>();
+            Dictionary<long, long> V = new Dictionary<long, long>();
+
+            return null;
+        }
+
+        public static long a(long n, long P, long D)
+        {
+            return (long) (0.5 * (P + Math.Sqrt(D)));
+        }
+
+        public static long b(long n, long P, long D)
+        {
+            return (long) (0.5 * (P - Math.Sqrt(D)));
         }
 
         public static long GenerateStrongLucasProbablePrimeParameter(long n)
