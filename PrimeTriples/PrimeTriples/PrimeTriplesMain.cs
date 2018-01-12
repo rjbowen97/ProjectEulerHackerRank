@@ -121,7 +121,7 @@ namespace PrimeTriples
             return n - CalculateJacobiSymbol(D, n);
         }
 
-        public static Tuple<long, long> FactorDeltaInto_d_TwoToThe_s(long delta)
+        public static Tuple<long, long> FactorDeltaInto_d_TwoToThe_s(long delta) //Item1 = d; Item2 = s
         {
             long d = delta;
             long s = 0;
