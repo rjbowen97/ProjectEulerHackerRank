@@ -62,7 +62,7 @@ namespace PrimeTriples
             }
 
             long D = GenerateStrongLucasProbablePrimeParameter(n);
-            IsStrongLucasProbablePrime(D);
+            IsStrongLucasProbablePrime(n, D);
 
 
             return true;
@@ -102,20 +102,38 @@ namespace PrimeTriples
             return false;
         }
 
-        public static bool IsStrongLucasProbablePrime(long D)
+        public static bool IsStrongLucasProbablePrime(long n, long D)
         {
-            GenerateLucasSequencesUandV(D);
+            long delta = n - CalculateJacobiSymbol(D, n);
+
+            Tuple<long, long> d_And_s = FactorDeltaInto_d_TwoToThe_s(delta);
+
+            long d = d_And_s.Item1;
+            long s = d_And_s.Item2;
+
+
 
             return false;
         }
 
-        //Item1 = U; Item2 = V
-        public static Tuple<Dictionary<long, long>, Dictionary<long, long>> GenerateLucasSequencesUandV(long D) //this can probably be optimized more
+        public static Tuple<long, long> FactorDeltaInto_d_TwoToThe_s(long delta)
         {
-            Dictionary<long, long> U = new Dictionary<long, long>();
-            Dictionary<long, long> V = new Dictionary<long, long>();
+            long d = delta;
+            long s = 0;
 
-            return null;
+            for (long testS = 0; testS < Math.Log(delta, 2); testS++) //O(log(n))
+            {
+                for (long testD = 1; testD < delta; testD += 2) //O(n) (check to see what limit must be here)
+                {
+                    if (delta == Math.Pow(2, testS) * testD) //delta = d*2^s
+                    {
+                        d = testD;
+                        s = testS;
+                    }
+                }
+            }
+
+            return new Tuple<long, long>(d, s);
         }
 
         public static long a(long n, long P, long D)
