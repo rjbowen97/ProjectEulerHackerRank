@@ -214,7 +214,7 @@ class TriangleRow
         return CalculatePrefixSum(n) + 1;
     }
 
-    public ulong GetRowEndNumber(ulong n) //O(n)
+    public ulong GetRowEndNumber(ulong n) //O(n) just use the rowstartnumber and add for efficiency
     {
         return CalculatePrefixSum(n + 1);
     }
