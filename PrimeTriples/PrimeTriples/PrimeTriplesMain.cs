@@ -104,7 +104,7 @@ namespace PrimeTriples
 
         public static bool IsStrongLucasProbablePrime(long n, long D)
         {
-            long delta = n - CalculateJacobiSymbol(D, n);
+            long delta = CalculateDelta(n, D);
 
             Tuple<long, long> d_And_s = FactorDeltaInto_d_TwoToThe_s(delta);
 
@@ -114,6 +114,11 @@ namespace PrimeTriples
 
 
             return false;
+        }
+
+        public static long CalculateDelta(long n, long D)
+        {
+            return n - CalculateJacobiSymbol(D, n);
         }
 
         public static Tuple<long, long> FactorDeltaInto_d_TwoToThe_s(long delta)

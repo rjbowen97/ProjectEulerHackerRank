@@ -48,5 +48,23 @@ namespace PrimeTriplesTests
             Assert.AreEqual(1, PrimeCalculator.CalculateJacobiSymbol(0, 1));
             Assert.AreEqual(1, PrimeCalculator.CalculateJacobiSymbol(15, 17));
         }
+
+        [TestMethod]
+        public void GenerateStrongLucasProbablePrimeParameterTesting()
+        {
+            PrimeCalculator.GenerateStrongLucasProbablePrimeParameter(9);
+        }
+
+        [TestMethod]
+        public void CalculateDeltaTesting()
+        {
+            PrimeCalculator.CalculateDelta(3, 5);
+        }
+
+        [TestMethod]
+        public void FactorDeltaInto_d_TwoToThe_sTesting()
+        {
+
+        }
     }
 }
