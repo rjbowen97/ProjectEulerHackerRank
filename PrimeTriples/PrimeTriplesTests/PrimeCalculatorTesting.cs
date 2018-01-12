@@ -52,13 +52,13 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void GenerateStrongLucasProbablePrimeParameterTesting()
         {
-            PrimeCalculator.GenerateStrongLucasProbablePrimeParameter(9);
+            PrimeCalculator.GenerateStrongLucasProbablePrimeParameter(11);
         }
 
         [TestMethod]
         public void CalculateDeltaTesting()
         {
-            PrimeCalculator.CalculateDelta(3, 5);
+            PrimeCalculator.CalculateDelta(11, 13);
         }
 
         [TestMethod]

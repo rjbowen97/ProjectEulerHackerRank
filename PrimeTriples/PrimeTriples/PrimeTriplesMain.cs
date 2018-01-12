@@ -153,17 +153,20 @@ namespace PrimeTriples
 
         public static long GenerateStrongLucasProbablePrimeParameter(long n)
         {
+            bool nextNumberIsNegative = true;
             long D = 5;
             while (CalculateJacobiSymbol(D, n) != -1)
             {
-                if (D > 0)
+                if (nextNumberIsNegative)
                 {
-                    D = -1 * (D + 2);
+                    D = -1 * (Math.Abs(D) + 2);
+                    nextNumberIsNegative = !nextNumberIsNegative;
                 }
 
                 else
                 {
-                    D = -1 * (D - 2);
+                    D = (Math.Abs(D) + 2);
+                    nextNumberIsNegative = !nextNumberIsNegative;
                 }
             }
 
