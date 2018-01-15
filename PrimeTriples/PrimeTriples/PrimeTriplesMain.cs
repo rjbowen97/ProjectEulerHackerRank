@@ -113,21 +113,9 @@ namespace PrimeTriples
 
             long P = 1;
             long Q = (1-D) / 4;
-            GenerateLucasNumberAtTargetIndex(D, P, Q, d);
+            GenerateULucasNumberAtTargetIndex(D, P, Q, d);
 
             return false;
-        }
-
-        public static void GenerateLucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
-            string targetIndexInBinary = Convert.ToString(targetIndex, 2);
-
-            long Um = 0;
-            long Un = 0;
-            long Vm = 0;
-            long Vn = 0;
-
-
-
         }
 
         public static long CalculateDelta(long n, long D)
@@ -153,6 +141,24 @@ namespace PrimeTriples
             }
 
             return new Tuple<long, long>(d, s);
+        }
+
+        public static void GenerateULucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
+
+            long Um = 0;
+            long Un = 1;
+            long Vm = 2;
+            long Vn = P;
+            
+            string targetIndexInBinary = Convert.ToString(targetIndex, 2);
+            char[] targetIndexBitArray = targetIndexInBinary.ToCharArray();
+            Array.Reverse(targetIndexBitArray);
+
+            for (int currentBitIndex = 0; currentBitIndex < targetIndexInBinary.Length; currentBitIndex++)
+            {
+
+            }
+
         }
 
         public static long a(long n, long P, long D)
