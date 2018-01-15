@@ -119,6 +119,14 @@ namespace PrimeTriples
         }
 
         public static void GenerateLucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
+            string targetIndexInBinary = Convert.ToString(targetIndex, 2);
+
+            long Um = 0;
+            long Un = 0;
+            long Vm = 0;
+            long Vn = 0;
+
+
 
         }
 
