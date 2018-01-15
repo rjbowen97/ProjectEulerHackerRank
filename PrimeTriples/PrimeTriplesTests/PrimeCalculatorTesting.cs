@@ -53,31 +53,21 @@ namespace PrimeTriplesTests
         public void GenerateStrongLucasProbablePrimeParameterTesting()
         {
             Assert.AreEqual(13, PrimeCalculator.GenerateStrongLucasProbablePrimeParameter(11));
-            
         }
 
         [TestMethod]
         public void CalculateDeltaTesting()
         {
-
-            Assert.AreEqual(12, PrimeCalculator.CalculateDelta(11, 13));
+            Assert.AreEqual(20, PrimeCalculator.CalculateDelta(19, 13));
         }
 
         [TestMethod]
         public void FactorDeltaInto_d_TwoToThe_sTesting()
         {
-            Tuple<long, long> testTuple1 = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(29);
+            Tuple<long, long> testTuple1 = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(20);
 
-            Assert.AreEqual(29, testTuple1.Item1);
-            Assert.AreEqual(0, testTuple1.Item2);
-
-            //Check what s actually requires
-            Tuple<long, long> testTuple2 = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(16);
-            Assert.AreEqual(1, testTuple2.Item1);
-            Assert.AreEqual(4, testTuple2.Item2);
-
-
-
+            Assert.AreEqual(5, testTuple1.Item1);
+            Assert.AreEqual(2, testTuple1.Item2);
         }
     }
 }
