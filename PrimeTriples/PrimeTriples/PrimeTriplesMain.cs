@@ -143,22 +143,18 @@ namespace PrimeTriples
             return new Tuple<long, long>(d, s);
         }
 
-        public static void GenerateULucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
+        public static long GenerateULucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
 
-            long Um = 0;
-            long Un = 1;
-            long Vm = 2;
-            long Vn = P;
-            
+            KeyValuePair<long, long> UCurrent = new KeyValuePair<long, long>(0, 0);
+            KeyValuePair<long, long> UNext = new KeyValuePair<long, long>(1, 1);
+            KeyValuePair<long, long> VCurrent = new KeyValuePair<long, long>(0, 2);
+            KeyValuePair<long, long> VNext = new KeyValuePair<long, long>(1, P);
+
             string targetIndexInBinary = Convert.ToString(targetIndex, 2);
             char[] targetIndexBitArray = targetIndexInBinary.ToCharArray();
             Array.Reverse(targetIndexBitArray);
 
-            for (int currentBitIndex = 0; currentBitIndex < targetIndexInBinary.Length; currentBitIndex++)
-            {
-
-            }
-
+            return 0;
         }
 
         public static long a(long n, long P, long D)
