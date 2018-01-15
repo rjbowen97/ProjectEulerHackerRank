@@ -111,9 +111,15 @@ namespace PrimeTriples
             long d = d_And_s.Item1;
             long s = d_And_s.Item2;
 
-
+            long P = 1;
+            long Q = (1-D) / 4;
+            GenerateLucasNumberAtTargetIndex(D, P, Q, d);
 
             return false;
+        }
+
+        public static void GenerateLucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
+
         }
 
         public static long CalculateDelta(long n, long D)
