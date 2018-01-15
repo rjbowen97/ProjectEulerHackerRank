@@ -66,10 +66,16 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void FactorDeltaInto_d_TwoToThe_sTesting()
         {
-            Tuple<long, long> testTuple = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(29);
+            Tuple<long, long> testTuple1 = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(29);
 
-            Assert.AreEqual(29, testTuple.Item1);
-            Assert.AreEqual(0, testTuple.Item2);
+            Assert.AreEqual(29, testTuple1.Item1);
+            Assert.AreEqual(0, testTuple1.Item2);
+
+            //Check what s actually requires
+            Tuple<long, long> testTuple2 = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(16);
+            Assert.AreEqual(1, testTuple2.Item1);
+            Assert.AreEqual(4, testTuple2.Item2);
+
 
 
         }
