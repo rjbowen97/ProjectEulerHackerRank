@@ -154,7 +154,27 @@ namespace PrimeTriples
             char[] targetIndexBitArray = targetIndexInBinary.ToCharArray();
             Array.Reverse(targetIndexBitArray);
 
+            while (UCurrent.Key != targetIndex)
+            {
+
+            }
+
             return 0;
+        }
+
+        public static KeyValuePair<long,long> DoubleU(KeyValuePair<long, long> UCurrent, KeyValuePair<long, long> VCurrent)
+        {
+
+            long indexToReturn = UCurrent.Key * 2;
+
+            long valueAtIndexToReturn = UCurrent.Value * VCurrent.Value;
+
+            return new KeyValuePair<long, long>(indexToReturn, valueAtIndexToReturn);
+        }
+
+        public static long DoubleUPlusOne(long UCurrent, long VCurrent)
+        {
+
         }
 
         public static long a(long n, long P, long D)
