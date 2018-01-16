@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
+//Look into using structs instead of classes in this
 namespace PrimeTriples
 {
     class PrimeTriplesMain
