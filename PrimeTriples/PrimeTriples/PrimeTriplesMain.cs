@@ -18,15 +18,12 @@ namespace PrimeTriples
     {
         public static bool RunBailliePSWPrimalityTest(long n)
         {
-
             //Check here if n is a perfect square
 
             //Run trial division on n using primes 2 through 1000
 
             if (!BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(n))
-            {
                 return false;
-            }
 
             LucasStrongProbablePrimeCalculator.IsStrongLucasProbablePrime(n);
 
@@ -39,7 +36,6 @@ namespace PrimeTriples
         public static bool IsStrongLucasProbablePrime(long n)
         {
             long D = GenerateStrongLucasProbablePrimeParameter(n);
-
 
             long delta = CalculateDelta(n, D);
 
@@ -154,17 +150,14 @@ namespace PrimeTriples
         public static long CalculateJacobiSymbol(long a, long b)
         {
             if (b <= 0 || (PrimeCalculatorUtilities.Modulo(b, 2)) == 0)
-            {
                 return 0;
-            }
+
             long j = 1;
             if (a < 0)
             {
                 a = -a;
                 if (PrimeCalculatorUtilities.Modulo(b, 4) == 3)
-                {
                     j = -j;
-                }
             }
 
             while (a != 0)
@@ -173,26 +166,23 @@ namespace PrimeTriples
                 {
                     a = a / 2;
                     if ((PrimeCalculatorUtilities.Modulo(b, 8)) == 3 || (PrimeCalculatorUtilities.Modulo(b, 8)) == 5)
-                    {
                         j = -j;
-                    }
                 }
 
                 long temp = a;
                 a = b;
                 b = temp;
 
-                if ((PrimeCalculatorUtilities.Modulo(a, 4)) == 3 && (PrimeCalculatorUtilities.Modulo(b, 4)) == 3) j = -j;
+                if ((PrimeCalculatorUtilities.Modulo(a, 4)) == 3 && (PrimeCalculatorUtilities.Modulo(b, 4)) == 3)
+                    j = -j;
+
                 a = PrimeCalculatorUtilities.Modulo(a, b);
             }
+
             if (b == 1)
-            {
                 return (j);
-            }
             else
-            {
                 return (0);
-            }
         }
     }
 
@@ -226,9 +216,7 @@ namespace PrimeTriples
             {
                 long power = d * (long)Math.Pow(2, r);
                 if (PrimeCalculatorUtilities.PowerModulo(2, power, n) == PrimeCalculatorUtilities.PowerModulo(-1, 1, n))
-                {
                     return true;
-                }
             }
             return false;
         }
@@ -261,9 +249,7 @@ namespace PrimeTriples
             for (int bitIndex = 0; bitIndex < bitArray.Length; bitIndex++) //O(n)
             {
                 if (bitArray[bitIndex] == '1')
-                {
                     totalMultipliedMod *= powerMods[bitIndex];
-                }
             }
 
             long result = Modulo(totalMultipliedMod, c);
