@@ -10,33 +10,33 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void ModuloTesting()
         {
-            Assert.AreEqual(-2, PrimeCalculator.Modulo(10, -3));
-            Assert.AreEqual(-3, PrimeCalculator.Modulo(12, -5));
-            Assert.AreEqual(15, PrimeCalculator.Modulo(-4, 19));
-            Assert.AreEqual(0, PrimeCalculator.Modulo(7, 7));
-            Assert.AreEqual(1, PrimeCalculator.Modulo(1, 4));
-        }
-
-        [TestMethod]
-        public void IsBaseTwoStrongProbablePrimeTesting()
-        {
-            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(5));
-            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(19));
-            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(197));
-            Assert.IsTrue(PrimeCalculator.IsBaseTwoStrongProbablePrime(2047)); //Strong psuedoprime in base 2, actually composite
-
-            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(10));
-            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(1000));
-            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(54));
-            Assert.IsFalse(PrimeCalculator.IsBaseTwoStrongProbablePrime(98));
+            Assert.AreEqual(-2, PrimeCalculatorUtilities.Modulo(10, -3));
+            Assert.AreEqual(-3, PrimeCalculatorUtilities.Modulo(12, -5));
+            Assert.AreEqual(15, PrimeCalculatorUtilities.Modulo(-4, 19));
+            Assert.AreEqual(0, PrimeCalculatorUtilities.Modulo(7, 7));
+            Assert.AreEqual(1, PrimeCalculatorUtilities.Modulo(1, 4));
         }
 
         [TestMethod]
         public void PowerModuloTesting()
         {
-            Assert.AreEqual(60, PrimeCalculator.PowerModulo(500, 400, 134));
-            Assert.AreEqual(109, PrimeCalculator.PowerModulo(29, 2, 122));
-            Assert.AreEqual(1, PrimeCalculator. PowerModulo(57, 80, 8));
+            Assert.AreEqual(60, PrimeCalculatorUtilities.PowerModulo(500, 400, 134));
+            Assert.AreEqual(109, PrimeCalculatorUtilities.PowerModulo(29, 2, 122));
+            Assert.AreEqual(1, PrimeCalculatorUtilities. PowerModulo(57, 80, 8));
+        }
+
+        [TestMethod]
+        public void IsBaseTwoStrongProbablePrimeTesting()
+        {
+            Assert.IsTrue(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(5));
+            Assert.IsTrue(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(19));
+            Assert.IsTrue(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(197));
+            Assert.IsTrue(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(2047)); //Strong psuedoprime in base 2, actually composite
+
+            Assert.IsFalse(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(10));
+            Assert.IsFalse(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(1000));
+            Assert.IsFalse(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(54));
+            Assert.IsFalse(BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(98));
         }
 
         [TestMethod]

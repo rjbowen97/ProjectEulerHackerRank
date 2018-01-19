@@ -14,11 +14,48 @@ namespace PrimeTriples
         }
     }
 
-    public static class PrimeCalculator
+    public static class BaseTwoStrongProbablePrimeCalculator
+    {
+        //Uses a strong probable prime test with base two
+        public static bool IsBaseTwoStrongProbablePrime(long n)
+        {
+            long s = 0;
+            long d = n;
+
+            for (long testS = 0; testS < Math.Log(n, 2); testS++) //O(log(n))
+            {
+                for (long testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
+                {
+                    if (n - 1 == Math.Pow(2, testS) * testD) //n = d*2^s + 1
+                    {
+                        s = testS;
+                        d = testD;
+                    }
+                }
+            }
+
+            if (PrimeCalculatorUtilities.PowerModulo(2, d, n) == PrimeCalculatorUtilities.PowerModulo(1, 1, n)) //O(log n)
+            {
+                return true;
+            }
+
+            for (long r = 0; r < s; r++) //O(s - 1) == O(log(n))
+            {
+                long power = d * (long)Math.Pow(2, r);
+                if (PrimeCalculatorUtilities.PowerModulo(2, power, n) == PrimeCalculatorUtilities.PowerModulo(-1, 1, n))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public static class PrimeCalculatorUtilities
     {
         public static long Modulo(long a, long b)
         {
-            return a - b * ((long) Math.Floor((Convert.ToDouble(a) / Convert.ToDouble(b))));
+            return a - b * ((long)Math.Floor((Convert.ToDouble(a) / Convert.ToDouble(b))));
         }
 
         public static long PowerModulo(long a, long b, long c)
@@ -29,7 +66,7 @@ namespace PrimeTriples
             long[] powerMods = new long[bitArray.Length];
 
             powerMods[0] = Modulo(a, c);
-            
+
             for (int currentPowerModsIndex = 1; currentPowerModsIndex < powerMods.Length; currentPowerModsIndex++)
             {
                 powerMods[currentPowerModsIndex] = Modulo(powerMods[currentPowerModsIndex - 1] * powerMods[currentPowerModsIndex - 1], c);
@@ -50,7 +87,10 @@ namespace PrimeTriples
 
             return result;
         }
+    }
 
+    public static class PrimeCalculator
+    {
         public static bool RunBailliePSWPrimalityTest(long n)
         {
 
@@ -58,7 +98,7 @@ namespace PrimeTriples
 
             //Run trial division on n using primes 2 through 1000
 
-            if (!IsBaseTwoStrongProbablePrime(n))
+            if (!BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(n))
             {
                 return false;
             }
@@ -68,40 +108,6 @@ namespace PrimeTriples
 
 
             return true;
-        }
-
-        //Uses a strong probable prime test with base two
-        public static bool IsBaseTwoStrongProbablePrime(long n)
-        {
-            long s = 0;
-            long d = n;
-
-            for (long testS = 0; testS < Math.Log(n, 2); testS++) //O(log(n))
-            {
-                for (long testD = 1; testD < n; testD += 2) //O(n) (check to see what limit must be here)
-                {
-                    if (n - 1 == Math.Pow(2, testS) * testD) //n = d*2^s + 1
-                    {
-                        s = testS;
-                        d = testD;
-                    }
-                }
-            }
-
-            if (PowerModulo(2, d, n) == PowerModulo(1, 1, n)) //O(log n)
-            {
-                return true;
-            }
-
-            for (long r = 0; r < s; r++) //O(s - 1) == O(log(n))
-            {
-                long power = d * (long)Math.Pow(2, r);
-                if (PowerModulo(2, power, n) == PowerModulo(-1, 1, n))
-                {
-                    return true;
-                }
-            }
-            return false;
         }
 
         public static bool IsStrongLucasProbablePrime(long n, long D)
@@ -217,7 +223,7 @@ namespace PrimeTriples
 
         public static long CalculateJacobiSymbol(long a, long b)
         {
-            if (b <= 0 || (Modulo(b, 2)) == 0)
+            if (b <= 0 || (PrimeCalculatorUtilities.Modulo(b, 2)) == 0)
             {
                 return 0;
             }
@@ -225,7 +231,7 @@ namespace PrimeTriples
             if (a < 0)
             {
                 a = -a;
-                if (Modulo(b, 4) == 3)
+                if (PrimeCalculatorUtilities.Modulo(b, 4) == 3)
                 {
                     j = -j;
                 }
@@ -233,10 +239,10 @@ namespace PrimeTriples
 
             while (a != 0)
             {
-                while ((Modulo(a, 2) == 0))
+                while ((PrimeCalculatorUtilities.Modulo(a, 2) == 0))
                 {
                     a = a / 2;
-                    if ((Modulo(b, 8)) == 3 || (Modulo(b, 8)) == 5)
+                    if ((PrimeCalculatorUtilities.Modulo(b, 8)) == 3 || (PrimeCalculatorUtilities.Modulo(b, 8)) == 5)
                     {
                         j = -j;
                     }
@@ -246,8 +252,8 @@ namespace PrimeTriples
                 a = b;
                 b = temp;
 
-                if ((Modulo(a, 4)) == 3 && (Modulo(b, 4)) == 3) j = -j;
-                a = Modulo(a, b);
+                if ((PrimeCalculatorUtilities.Modulo(a, 4)) == 3 && (PrimeCalculatorUtilities.Modulo(b, 4)) == 3) j = -j;
+                a = PrimeCalculatorUtilities.Modulo(a, b);
             }
             if (b == 1)
             {
