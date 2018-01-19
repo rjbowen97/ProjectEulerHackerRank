@@ -164,19 +164,19 @@ namespace PrimeTriples
             return 0;
         }
 
-        public static KeyValuePair<long,long> DoubleU(KeyValuePair<long, long> UCurrent, KeyValuePair<long, long> VCurrent)
+        public static KeyValuePair<long,long> DoubleU(KeyValuePair<long, long> UCurrentN, KeyValuePair<long, long> VCurrentN)
         {
 
-            long indexToReturn = UCurrent.Key * 2;
+            long indexToReturn = UCurrentN.Key * 2;
 
-            long valueAtIndexToReturn = UCurrent.Value * VCurrent.Value;
+            long valueAtIndexToReturn = UCurrentN.Value * VCurrentN.Value;
 
             return new KeyValuePair<long, long>(indexToReturn, valueAtIndexToReturn);
         }
 
-        public static long DoubleUPlusOne(long UCurrent, long VCurrent)
+        public static long U_doubled_plus_one(long UCurrentN, long UOne, long VCurrentN)
         {
-
+            return 0;
         }
 
         public static long a(long n, long P, long D)
