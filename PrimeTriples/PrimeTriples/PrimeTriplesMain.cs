@@ -14,6 +14,189 @@ namespace PrimeTriples
         }
     }
 
+    public static class PrimeCalculator
+    {
+        public static bool RunBailliePSWPrimalityTest(long n)
+        {
+
+            //Check here if n is a perfect square
+
+            //Run trial division on n using primes 2 through 1000
+
+            if (!BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(n))
+            {
+                return false;
+            }
+
+            LucasStrongProbablePrimeCalculator.IsStrongLucasProbablePrime(n);
+
+            return true;
+        }
+    }
+
+    public static class LucasStrongProbablePrimeCalculator
+    {
+        public static bool IsStrongLucasProbablePrime(long n)
+        {
+            long D = GenerateStrongLucasProbablePrimeParameter(n);
+
+
+            long delta = CalculateDelta(n, D);
+
+            Tuple<long, long> d_And_s = FactorDeltaInto_d_TwoToThe_s(delta);
+
+            long d = d_And_s.Item1;
+            long s = d_And_s.Item2;
+
+            long P = 1;
+            long Q = (1 - D) / 4;
+            GenerateULucasNumberAtTargetIndex(D, P, Q, d);
+
+            return false;
+        }
+
+        public static long CalculateDelta(long n, long D)
+        {
+            return n - CalculateJacobiSymbol(D, n);
+        }
+
+        public static Tuple<long, long> FactorDeltaInto_d_TwoToThe_s(long delta) //Item1 = d; Item2 = s
+        {
+            long d = delta;
+            long s = 0;
+
+            for (long testS = 0; testS < Math.Log(delta, 2); testS++) //O(log(n))
+            {
+                for (long testD = 1; testD < delta; testD += 2) //O(n) (check to see what limit must be here)
+                {
+                    if (delta == Math.Pow(2, testS) * testD) //delta = d*2^s
+                    {
+                        d = testD;
+                        s = testS;
+                    }
+                }
+            }
+
+            return new Tuple<long, long>(d, s);
+        }
+
+        public static long GenerateULucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex)
+        {
+
+            KeyValuePair<long, long> UCurrent = new KeyValuePair<long, long>(0, 0);
+            KeyValuePair<long, long> UNext = new KeyValuePair<long, long>(1, 1);
+            KeyValuePair<long, long> VCurrent = new KeyValuePair<long, long>(0, 2);
+            KeyValuePair<long, long> VNext = new KeyValuePair<long, long>(1, P);
+
+            string targetIndexInBinary = Convert.ToString(targetIndex, 2);
+            char[] targetIndexBitArray = targetIndexInBinary.ToCharArray();
+            Array.Reverse(targetIndexBitArray);
+
+            while (UCurrent.Key != targetIndex)
+            {
+
+            }
+
+            return 0;
+        }
+
+        public static KeyValuePair<long, long> DoubleU(KeyValuePair<long, long> UCurrentN, KeyValuePair<long, long> VCurrentN)
+        {
+            long indexToReturn = UCurrentN.Key * 2;
+
+            long valueAtIndexToReturn = UCurrentN.Value * VCurrentN.Value;
+
+            return new KeyValuePair<long, long>(indexToReturn, valueAtIndexToReturn);
+        }
+
+        public static long U_doubled_plus_one(long UCurrentN, long VCurrentN, long n, long Q)
+        {
+            long UOne = 1;
+            long U_n_plus_one = 1;
+
+            long U_two_n_plus_one = (U_n_plus_one * VCurrentN) - ((long)Math.Pow(Q, n));
+
+            return 0;
+        }
+
+        public static long a(long n, long P, long D)
+        {
+            return (long)(0.5 * (P + Math.Sqrt(D)));
+        }
+
+        public static long b(long n, long P, long D)
+        {
+            return (long)(0.5 * (P - Math.Sqrt(D)));
+        }
+
+        public static long GenerateStrongLucasProbablePrimeParameter(long n)
+        {
+            bool nextNumberIsNegative = true;
+            long D = 5;
+            while (CalculateJacobiSymbol(D, n) != -1)
+            {
+                if (nextNumberIsNegative)
+                {
+                    D = -1 * (Math.Abs(D) + 2);
+                    nextNumberIsNegative = !nextNumberIsNegative;
+                }
+
+                else
+                {
+                    D = (Math.Abs(D) + 2);
+                    nextNumberIsNegative = !nextNumberIsNegative;
+                }
+            }
+
+            return D;
+        }
+
+        public static long CalculateJacobiSymbol(long a, long b)
+        {
+            if (b <= 0 || (PrimeCalculatorUtilities.Modulo(b, 2)) == 0)
+            {
+                return 0;
+            }
+            long j = 1;
+            if (a < 0)
+            {
+                a = -a;
+                if (PrimeCalculatorUtilities.Modulo(b, 4) == 3)
+                {
+                    j = -j;
+                }
+            }
+
+            while (a != 0)
+            {
+                while ((PrimeCalculatorUtilities.Modulo(a, 2) == 0))
+                {
+                    a = a / 2;
+                    if ((PrimeCalculatorUtilities.Modulo(b, 8)) == 3 || (PrimeCalculatorUtilities.Modulo(b, 8)) == 5)
+                    {
+                        j = -j;
+                    }
+                }
+
+                long temp = a;
+                a = b;
+                b = temp;
+
+                if ((PrimeCalculatorUtilities.Modulo(a, 4)) == 3 && (PrimeCalculatorUtilities.Modulo(b, 4)) == 3) j = -j;
+                a = PrimeCalculatorUtilities.Modulo(a, b);
+            }
+            if (b == 1)
+            {
+                return (j);
+            }
+            else
+            {
+                return (0);
+            }
+        }
+    }
+
+
     public static class BaseTwoStrongProbablePrimeCalculator
     {
         //Uses a strong probable prime test with base two
@@ -86,183 +269,6 @@ namespace PrimeTriples
             long result = Modulo(totalMultipliedMod, c);
 
             return result;
-        }
-    }
-
-    public static class PrimeCalculator
-    {
-        public static bool RunBailliePSWPrimalityTest(long n)
-        {
-
-            //Check here if n is a perfect square
-
-            //Run trial division on n using primes 2 through 1000
-
-            if (!BaseTwoStrongProbablePrimeCalculator.IsBaseTwoStrongProbablePrime(n))
-            {
-                return false;
-            }
-
-            long D = GenerateStrongLucasProbablePrimeParameter(n);
-            IsStrongLucasProbablePrime(n, D);
-
-
-            return true;
-        }
-
-        public static bool IsStrongLucasProbablePrime(long n, long D)
-        {
-            long delta = CalculateDelta(n, D);
-
-            Tuple<long, long> d_And_s = FactorDeltaInto_d_TwoToThe_s(delta);
-
-            long d = d_And_s.Item1;
-            long s = d_And_s.Item2;
-
-            long P = 1;
-            long Q = (1-D) / 4;
-            GenerateULucasNumberAtTargetIndex(D, P, Q, d);
-
-            return false;
-        }
-
-        public static long CalculateDelta(long n, long D)
-        {
-            return n - CalculateJacobiSymbol(D, n);
-        }
-
-        public static Tuple<long, long> FactorDeltaInto_d_TwoToThe_s(long delta) //Item1 = d; Item2 = s
-        {
-            long d = delta;
-            long s = 0;
-
-            for (long testS = 0; testS < Math.Log(delta, 2); testS++) //O(log(n))
-            {
-                for (long testD = 1; testD < delta; testD += 2) //O(n) (check to see what limit must be here)
-                {
-                    if (delta == Math.Pow(2, testS) * testD) //delta = d*2^s
-                    {
-                        d = testD;
-                        s = testS;
-                    }
-                }
-            }
-
-            return new Tuple<long, long>(d, s);
-        }
-
-        public static long GenerateULucasNumberAtTargetIndex(long D, long P, long Q, long targetIndex) {
-
-            KeyValuePair<long, long> UCurrent = new KeyValuePair<long, long>(0, 0);
-            KeyValuePair<long, long> UNext = new KeyValuePair<long, long>(1, 1);
-            KeyValuePair<long, long> VCurrent = new KeyValuePair<long, long>(0, 2);
-            KeyValuePair<long, long> VNext = new KeyValuePair<long, long>(1, P);
-
-            string targetIndexInBinary = Convert.ToString(targetIndex, 2);
-            char[] targetIndexBitArray = targetIndexInBinary.ToCharArray();
-            Array.Reverse(targetIndexBitArray);
-
-            while (UCurrent.Key != targetIndex)
-            {
-
-            }
-
-            return 0;
-        }
-
-        public static KeyValuePair<long,long> DoubleU(KeyValuePair<long, long> UCurrentN, KeyValuePair<long, long> VCurrentN)
-        {
-            long indexToReturn = UCurrentN.Key * 2;
-
-            long valueAtIndexToReturn = UCurrentN.Value * VCurrentN.Value;
-
-            return new KeyValuePair<long, long>(indexToReturn, valueAtIndexToReturn);
-        }
-
-        public static long U_doubled_plus_one(long UCurrentN, long VCurrentN, long n, long Q)
-        {
-            long UOne = 1;
-            long U_n_plus_one = 1;
-
-            long U_two_n_plus_one = (U_n_plus_one * VCurrentN) - ((long) Math.Pow(Q, n));
-
-            return 0;
-        }
-
-        public static long a(long n, long P, long D)
-        {
-            return (long) (0.5 * (P + Math.Sqrt(D)));
-        }
-
-        public static long b(long n, long P, long D)
-        {
-            return (long) (0.5 * (P - Math.Sqrt(D)));
-        }
-
-        public static long GenerateStrongLucasProbablePrimeParameter(long n)
-        {
-            bool nextNumberIsNegative = true;
-            long D = 5;
-            while (CalculateJacobiSymbol(D, n) != -1)
-            {
-                if (nextNumberIsNegative)
-                {
-                    D = -1 * (Math.Abs(D) + 2);
-                    nextNumberIsNegative = !nextNumberIsNegative;
-                }
-
-                else
-                {
-                    D = (Math.Abs(D) + 2);
-                    nextNumberIsNegative = !nextNumberIsNegative;
-                }
-            }
-
-            return D;
-        }
-
-        public static long CalculateJacobiSymbol(long a, long b)
-        {
-            if (b <= 0 || (PrimeCalculatorUtilities.Modulo(b, 2)) == 0)
-            {
-                return 0;
-            }
-            long j = 1;
-            if (a < 0)
-            {
-                a = -a;
-                if (PrimeCalculatorUtilities.Modulo(b, 4) == 3)
-                {
-                    j = -j;
-                }
-            }
-
-            while (a != 0)
-            {
-                while ((PrimeCalculatorUtilities.Modulo(a, 2) == 0))
-                {
-                    a = a / 2;
-                    if ((PrimeCalculatorUtilities.Modulo(b, 8)) == 3 || (PrimeCalculatorUtilities.Modulo(b, 8)) == 5)
-                    {
-                        j = -j;
-                    }
-                }
-
-                long temp = a;
-                a = b;
-                b = temp;
-
-                if ((PrimeCalculatorUtilities.Modulo(a, 4)) == 3 && (PrimeCalculatorUtilities.Modulo(b, 4)) == 3) j = -j;
-                a = PrimeCalculatorUtilities.Modulo(a, b);
-            }
-            if (b == 1)
-            {
-                return (j);
-            }
-            else
-            {
-                return (0);
-            }
         }
     }
 }

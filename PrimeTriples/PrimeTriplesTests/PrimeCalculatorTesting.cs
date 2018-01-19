@@ -42,29 +42,29 @@ namespace PrimeTriplesTests
         [TestMethod]
         public void JacobiSymbolTesting()
         {
-            Assert.AreEqual(-1, PrimeCalculator.CalculateJacobiSymbol(3, 5));
-            Assert.AreEqual(-1, PrimeCalculator.CalculateJacobiSymbol(3, 17));
-            Assert.AreEqual(0, PrimeCalculator.CalculateJacobiSymbol(0, 9));
-            Assert.AreEqual(1, PrimeCalculator.CalculateJacobiSymbol(0, 1));
-            Assert.AreEqual(1, PrimeCalculator.CalculateJacobiSymbol(15, 17));
+            Assert.AreEqual(-1, LucasStrongProbablePrimeCalculator.CalculateJacobiSymbol(3, 5));
+            Assert.AreEqual(-1, LucasStrongProbablePrimeCalculator.CalculateJacobiSymbol(3, 17));
+            Assert.AreEqual(0, LucasStrongProbablePrimeCalculator.CalculateJacobiSymbol(0, 9));
+            Assert.AreEqual(1, LucasStrongProbablePrimeCalculator.CalculateJacobiSymbol(0, 1));
+            Assert.AreEqual(1, LucasStrongProbablePrimeCalculator.CalculateJacobiSymbol(15, 17));
         }
 
         [TestMethod]
         public void GenerateStrongLucasProbablePrimeParameterTesting()
         {
-            Assert.AreEqual(13, PrimeCalculator.GenerateStrongLucasProbablePrimeParameter(11));
+            Assert.AreEqual(13, LucasStrongProbablePrimeCalculator.GenerateStrongLucasProbablePrimeParameter(11));
         }
 
         [TestMethod]
         public void CalculateDeltaTesting()
         {
-            Assert.AreEqual(20, PrimeCalculator.CalculateDelta(19, 13));
+            Assert.AreEqual(20, LucasStrongProbablePrimeCalculator.CalculateDelta(19, 13));
         }
 
         [TestMethod]
         public void FactorDeltaInto_d_TwoToThe_sTesting()
         {
-            Tuple<long, long> testTuple1 = PrimeCalculator.FactorDeltaInto_d_TwoToThe_s(20);
+            Tuple<long, long> testTuple1 = LucasStrongProbablePrimeCalculator.FactorDeltaInto_d_TwoToThe_s(20);
 
             Assert.AreEqual(5, testTuple1.Item1);
             Assert.AreEqual(2, testTuple1.Item2);
