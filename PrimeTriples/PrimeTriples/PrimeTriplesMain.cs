@@ -166,7 +166,6 @@ namespace PrimeTriples
 
         public static KeyValuePair<long,long> DoubleU(KeyValuePair<long, long> UCurrentN, KeyValuePair<long, long> VCurrentN)
         {
-
             long indexToReturn = UCurrentN.Key * 2;
 
             long valueAtIndexToReturn = UCurrentN.Value * VCurrentN.Value;
@@ -174,8 +173,13 @@ namespace PrimeTriples
             return new KeyValuePair<long, long>(indexToReturn, valueAtIndexToReturn);
         }
 
-        public static long U_doubled_plus_one(long UCurrentN, long UOne, long VCurrentN)
+        public static long U_doubled_plus_one(long UCurrentN, long VCurrentN, long n, long Q)
         {
+            long UOne = 1;
+            long U_n_plus_one = 1;
+
+            long U_two_n_plus_one = (U_n_plus_one * VCurrentN) - ((long) Math.Pow(Q, n));
+
             return 0;
         }
 
