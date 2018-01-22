@@ -115,6 +115,11 @@ namespace PrimeTriples
             return 0;
         }
 
+        public static long U_m_Plus_n(long a, long b)
+        {
+            return (Math.Pow(a(n, P, D), a + b) - Math.Pow(b(n, P, D), a + b));
+        }
+
         public static long a(long n, long P, long D)
         {
             return (long)(0.5 * (P + Math.Sqrt(D)));
